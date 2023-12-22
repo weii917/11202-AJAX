@@ -6,15 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>學生資料管理系統</title>
     <link rel="shortcut icon" href="#" type="image/x-icon">
+    <link rel="stylesheet" href="../plugin/css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <!---匯入要使用的函式庫--->
-
+    <script src="jquery.js"></script>
 
 </head>
 <body>
   <h1 class="header">學生資料管理系統</h1>
-
-  
+  <div>
+    <button onclick="query('sex=1')">男生</button>
+  </div>
+  <div class="users d-flex flex-wrap mx-auto my-3" style="width:64%"></div>
 </body>
 </html>
 <script>
@@ -25,7 +28,7 @@
 * 4.是否會有回傳值？回傳值的功用及處理？
 * 5.是否需要更新畫面內容？更新畫面的方法？
 ************************************/
-
+queryAll();
 
 //新增資料的函式
 function create(){
@@ -33,8 +36,36 @@ function create(){
 }
 
 //查詢資料的函式
-function query(){
-
+function query(def){
+  def=def.split("=")
+  console.log(def)
+  $.get("./api/query.php?do=def",{def},(res)=>{
+    console.log(res)
+  })
+}
+function queryAll(){
+$.get("./api/query.php?do=all",(users)=>{
+  //users=JSON.parse(users)
+  let user_layout;
+  users.forEach((user,idx)=>{
+    user_layout=`<div class="p-2">
+      <div class="card" style="width: 18rem;">
+  <div class='name text-center bolder text-lg'>${user.name}</div>
+  <div class="card-body">
+    <h5 class="card-title">${user.school_num}</h5>
+    <div class="card-text">${user.birthday}</div>
+    <div class="card-text">${user.uni_id}</div>
+    <div class='controls'>
+      <a href="#" class="btn btn-primary">編輯</a>
+      <a href="#" class="btn btn-danger">刪除</a>
+    </div>
+  </div>
+</div></div>`
+  
+    $(".users").append(user_layout)
+  })
+  //console.log(users)
+})
 }
 
 //編輯資料的函式
