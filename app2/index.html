@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="style.css">
   <!---匯入要使用的函式庫--->
   <script src="jquery.js"></script>
+  <!-- 搜尋顯示框 -->
   <style>
     #relation {
       border: 1px solid #ccc;
@@ -53,6 +54,7 @@
 
 </html>
 <script>
+  // 搜尋功能開始
   let input
   $("#search-input").on('input', () => {
     input = $("#search-input").val()
@@ -61,6 +63,8 @@
       $("#relation").show()
     })
   })
+  // 搜尋功能結束
+// modal function功能開始
   let stuModal
   function popForm(type, id = null) {
     switch (type) {
@@ -86,6 +90,7 @@
 
         })
         break;
+        // add與edit差別在是否參數帶有id
       case 'edit':
         //console.log('送出前的id'+id)
         $.get("./api/user_form.php", { id }, (form) => {
@@ -113,6 +118,8 @@
     }
 
   }
+// modal function 功能結束
+
 
   /************************************
   * 1.考慮觸發行為的事件
