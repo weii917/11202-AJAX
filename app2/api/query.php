@@ -13,7 +13,9 @@ switch($_GET['do']){
         echo json_encode($users);
     break;
     case 'class':
-        
+        // 連表查詢找出classstudent資料表的班級class_code等於點擊班級的value找出所有此班級，知道此班級有哪些學號
+        // 知道此班級學號拿來與student資料表的school_num相等的話，透過student找才會撈到id的資料，此id存進nums
+        // 再從student資料表where把存在in裡的id為條件，來撈出所有此班級的人
         $stnums=$ClassStudent->all(['class_code'=>$_GET['value']]);
         //dd($stnums);
         $nums=[];
