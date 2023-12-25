@@ -67,7 +67,7 @@
               console.log(form);
         //先把表單放到#modal裏
         $("#modals").html(form)              
-        
+
         //宣告modal物件
         stuModal = new bootstrap.Modal('#studentForm', {
             keyboard: false
@@ -75,13 +75,14 @@
         
         //註冊modal的顯示事件
         $("#studentForm").on('show.bs.modal', () => {
-            $.get("./api/get_schools.php", (options) => {
+            $.get("./api/get_schools.php",{id}, (options) => {
                 $("#schools").html(options)
           })
         })
 
         //觸發顯示
         stuModal.show("studentForm")              
+        console.log('userId=>'+id)
         })
       break;
     }
