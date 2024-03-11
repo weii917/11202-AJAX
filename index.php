@@ -32,6 +32,9 @@
         <a href="axios.html">axios</a>
     </div>
     <div class="types">
+        <a href="curl.html">curl</a>
+    </div>
+    <div class="types">
         <a href="./app1/index.html">用ajax取代iframe</a>
     </div>
     <div class="types">
